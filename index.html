@@ -51,11 +51,12 @@
 </head>
 
 <body>
-    <h1>Cadastro de pessoas</h1>
+    <h1>Contador de pessoas por idade.</h1>
     <p>O valor será contabilizado a cada clique em salvar.</p>
+    <p>Todos as idades serão consieradas números inteiros.</p>
     <li>crianças: até 13 anos;</li>
-    <li>adolescente: maiores de 13 a 17.99 anos;</li>
-    <li>adultos: de 18 a 60 anos;</li>
+    <li>adolescente: de 14 a 17;</li>
+    <li>adultos: de 18 a 60;</li>
     <li>idosos: 60 anos acima.</li>
     <div id="entrada">Digite a idade.</div>
     <input id="cadastro" type="number" min="0">
@@ -71,33 +72,41 @@
     <div id="idosos"></div>
 </body>
 <script>
+    cadastroPessoa = {
+        contaPessoaPorIdade: function (idade) {
+            let crianca = document.getElementById('criancas').innerText;
+            let adolescente = document.getElementById('adolescentes').innerText;
+            let adulto = document.getElementById('adultos').innerText;
+            let idoso = document.getElementById('idosos').innerText;
+            if (idade <= 0 || idade == '') {
+                document.getElementById('mensagem').innerText = 'Digite uma idade maior que zero!';
+            } else if (idade <= 13) {
+                crianca++;
+                document.getElementById('criancas').innerText = crianca;
+                document.getElementById('mensagem').innerText = '';
+            } else if (idade > 13 && idade <= 17) {
+                adolescente++;
+                document.getElementById('adolescentes').innerText = adolescente;
+                document.getElementById('mensagem').innerText = '';
+            } else if (idade > 17 && idade <= 60) {
+                adulto++;
+                document.getElementById('adultos').innerText = adulto;
+                document.getElementById('mensagem').innerText = '';
+            } else {
+                idoso++;
+                document.getElementById('idosos').innerText = idoso;
+                document.getElementById('mensagem').innerText = '';
+            }
+        },
+        ler: function () {
+            let entrada = parseInt(Number(document.getElementById('cadastro').value));
+            return entrada;
+        },
+    }
 
     function principal() {
-        let crianca = document.getElementById('criancas').innerText;
-        let adolescente = document.getElementById('adolescentes').innerText;
-        let adulto = document.getElementById('adultos').innerText;
-        let idoso = document.getElementById('idosos').innerText;
-
-        let idade = Number(document.getElementById('cadastro').value);
-        if (idade <= 0) {
-            document.getElementById('mensagem').innerText = 'Digite uma idade maior que zero!';
-        } else if (idade <= 13) {
-            crianca++;
-            document.getElementById('criancas').innerText = crianca;
-            document.getElementById('mensagem').innerText = '';
-        } else if (idade > 13 && idade <= 17.99) {
-            adolescente++;
-            document.getElementById('adolescentes').innerText = adolescente;
-            document.getElementById('mensagem').innerText = '';
-        } else if (idade > 17.99 && idade <= 60) {
-            adulto++;
-            document.getElementById('adultos').innerText = adulto;
-            document.getElementById('mensagem').innerText = '';
-           } else {
-            idoso++;
-            document.getElementById('idosos').innerText = idoso;
-            document.getElementById('mensagem').innerText = '';
-        }
+        let dado = cadastroPessoa.ler();
+        cadastroPessoa.contaPessoaPorIdade(dado);
     }
 </script>
 
