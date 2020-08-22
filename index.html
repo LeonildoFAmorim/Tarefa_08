@@ -58,11 +58,11 @@
     <li>adolescente: de 14 a 17;</li>
     <li>adultos: de 18 a 60;</li>
     <li>idosos: 60 anos acima.</li>
-    <div id="entrada">Digite a idade.</div>
+    <div id=>Digite a idade.</div>
     <input id="cadastro" type="number" min="1">
     <button id="salvar" onclick="principal()">Salvar</button>
     <div id="mensagem"></div>
-    <div id="cri">crianças:</div>
+    <div>crianças:</div>
     <div id="criancas"></div>
     <div>adolescentes:</div>
     <div id="adolescentes"></div>
@@ -82,21 +82,21 @@
                 document.getElementById('mensagem').innerText = 'Digite uma idade maior que zero!';
             } else if (idade <= 13) {
                 this.crianca++;
-                document.getElementById('criancas').innerText = this.crianca;
                 document.getElementById('mensagem').innerText = '';
             } else if (idade > 13 && idade <= 17) {
                 this.adolescente++;
-                document.getElementById('adolescentes').innerText = this.adolescente;
                 document.getElementById('mensagem').innerText = '';
             } else if (idade > 17 && idade <= 60) {
                 this.adulto++;
-                document.getElementById('adultos').innerText = this.adulto;
                 document.getElementById('mensagem').innerText = '';
             } else {
                 this.idoso++;
-                document.getElementById('idosos').innerText = this.idoso;
                 document.getElementById('mensagem').innerText = '';
             }
+            document.getElementById('criancas').innerText = this.crianca;
+            document.getElementById('adolescentes').innerText = this.adolescente;
+            document.getElementById('adultos').innerText = this.adulto;
+            document.getElementById('idosos').innerText = this.idoso;
         },
         ler: function () {
             let entrada = parseInt(Number(document.getElementById('cadastro').value));
