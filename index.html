@@ -59,7 +59,7 @@
     <li>adultos: de 18 a 60;</li>
     <li>idosos: 60 anos acima.</li>
     <div id="entrada">Digite a idade.</div>
-    <input id="cadastro" type="number" min="0">
+    <input id="cadastro" type="number" min="1">
     <button id="salvar" onclick="principal()">Salvar</button>
     <div id="mensagem"></div>
     <div id="cri">crianças:</div>
@@ -72,29 +72,29 @@
     <div id="idosos"></div>
 </body>
 <script>
-    cadastroPessoa = {
+     cadastroPessoa = {
+        crianca: 0,
+        adolescente: 0,
+        adulto: 0,
+        idoso:0,
         contaPessoaPorIdade: function (idade) {
-            let crianca = document.getElementById('criancas').innerText;
-            let adolescente = document.getElementById('adolescentes').innerText;
-            let adulto = document.getElementById('adultos').innerText;
-            let idoso = document.getElementById('idosos').innerText;
             if (idade <= 0 || idade == '') {
                 document.getElementById('mensagem').innerText = 'Digite uma idade maior que zero!';
             } else if (idade <= 13) {
-                crianca++;
-                document.getElementById('criancas').innerText = crianca;
+                this.crianca++;
+                document.getElementById('criancas').innerText = this.crianca;
                 document.getElementById('mensagem').innerText = '';
             } else if (idade > 13 && idade <= 17) {
-                adolescente++;
-                document.getElementById('adolescentes').innerText = adolescente;
+                this.adolescente++;
+                document.getElementById('adolescentes').innerText = this.adolescente;
                 document.getElementById('mensagem').innerText = '';
             } else if (idade > 17 && idade <= 60) {
-                adulto++;
-                document.getElementById('adultos').innerText = adulto;
+                this.adulto++;
+                document.getElementById('adultos').innerText = this.adulto;
                 document.getElementById('mensagem').innerText = '';
             } else {
-                idoso++;
-                document.getElementById('idosos').innerText = idoso;
+                this.idoso++;
+                document.getElementById('idosos').innerText = this.idoso;
                 document.getElementById('mensagem').innerText = '';
             }
         },
